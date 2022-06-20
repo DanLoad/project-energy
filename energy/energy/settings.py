@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'crontab',
+    'modbus',
     'django_crontab',
     'django.contrib.admin',
     'django.contrib.auth',
