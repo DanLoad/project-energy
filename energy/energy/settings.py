@@ -27,13 +27,31 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+
+# celery
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
+CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_TIMEZONE = "Australia/Tasmania"
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60
+
+CELERYBEAT_SCHEDULE = 'django_celery_beat.schedulers:DatabaseScheduler'
+
+
 
 # Application definition
 
 INSTALLED_APPS = [
-    'crontab',
+    'django_celery_beat',
+    'django_celery_results',
+    'rest_framework',
+    'api',
     'modbus',
-    'django_crontab',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -101,6 +119,7 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
 
 
 # Internationalization
