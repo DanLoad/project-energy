@@ -48,6 +48,7 @@ CELERYBEAT_SCHEDULE = 'django_celery_beat.schedulers:DatabaseScheduler'
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -75,7 +76,7 @@ ROOT_URLCONF = 'energy.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -89,7 +90,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'energy.wsgi.application'
-
+ASGI_APPLICATION = 'energy.asgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
